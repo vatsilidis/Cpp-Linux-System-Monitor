@@ -130,7 +130,7 @@ long LinuxParser::ActiveJiffies(int pid) {
     cstime = std::stol(value_list[17]);
     starttime= std::stol(value_list[22]);
     //total time spent for the process including the time from children processes
-    total_time = utime + stime + cstime;
+    total_time = utime + stime + cutime + cstime;
     //get the total elapsed time in seconds since the process started
     seconds = uptime - (starttime / Hz);
     //calculate the CPU usage percentage
