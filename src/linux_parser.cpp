@@ -318,5 +318,6 @@ long LinuxParser::UpTime(int pid) {
   starttime = starttime / sysconf(_SC_CLK_TCK);
   uptime =  UpTime() - starttime;
   return uptime;
-}
+  }
+  return uptime;
 }
