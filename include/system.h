@@ -22,6 +22,7 @@ class System {
  private:
   Processor cpu_ = {};
   std::vector<Process> processes_ = {};
+  double uptime=0.0;
 };
 
 #endif

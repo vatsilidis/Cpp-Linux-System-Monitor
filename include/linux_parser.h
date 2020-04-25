@@ -45,6 +45,8 @@ long Jiffies();
 long ActiveJiffies();
 long ActiveJiffies(int pid);
 long IdleJiffies();
+std::vector<long> jiffiesCPU;
+    
 
 // Processes
 std::string Command(int pid);
