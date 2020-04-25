@@ -13,26 +13,48 @@ using std::size_t;
 using std::string;
 using std::vector;
 
-// TODO: Return the system's CPU
 Processor& System::Cpu() { return cpu_; }
+vector<Process>& System::Processes() { 
+    vector<int> pidSet = LinuxParser::Pids();
 
-// TODO: Return a container composed of the system's processes
-vector<Process>& System::Processes() { return processes_; }
+    /*
+    //create extension set for Pids
+    set<int> extensionPids;
+    for (Process const& prcss : processes_){
+        extensionPids.insert(prcss.Pid());
+    }
+    
+    //emplace the new processes
+    for (int pid : pidSet){
+        if(extensionPids.find(pid) == extensionPids.end()){
+            processes_.emplace_back(pid);
+        }
+    }
+    */
+   for(int pid: pidSet){
+       
+   }
+   
 
-// TODO: Return the system's kernel identifier (string)
-std::string System::Kernel() { return string(); }
+    //update cpu utilization with new processes
+    for (Process& prcss : processes_){
+        prcss.CpuUtilization(LinuxParser::ActiveJiffies(prcss.Pid() / LinuxParser::ActiveJiffies() ));
+    }
+    
+    std::sort(processes_.begin(), processes_.end(), std::greater_equal());
+    return processes_; 
+}
 
-// TODO: Return the system's memory utilization
-float System::MemoryUtilization() { return 0.0; }
+std::string System::Kernel() { return LinuxParser::Kernel(); }
+float System::MemoryUtilization() { return LinuxParser::MemoryUtilization(); }
+std::string System::OperatingSystem() { return LinuxParser::OperatingSystem(); }
+int System::RunningProcesses() { return LinuxParser::RunningProcesses(); }
+int System::TotalProcesses() { return LinuxParser::TotalProcesses(); }
 
-// TODO: Return the operating system name
-std::string System::OperatingSystem() { return string(); }
-
-// TODO: Return the number of processes actively running on the system
-int System::RunningProcesses() { return 0; }
-
-// TODO: Return the total number of processes on the system
-int System::TotalProcesses() { return 0; }
-
-// TODO: Return the number of seconds since the system started running
-long int System::UpTime() { return 0; }
+//store the UpTime to the local uptime variable for not parssing in every call
+long int System::UpTime() { 
+    if (uptime==0.0){
+        uptime = LinuxParser::UpTime();
+        return uptime;
+    }else {return uptime;}
+}
