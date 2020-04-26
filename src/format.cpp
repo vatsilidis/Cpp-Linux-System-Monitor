@@ -3,8 +3,6 @@
 
 using std::string;
 
-// INPUT: Long int measuring seconds
-// OUTPUT: HH:MM:SS
 string Format::ElapsedTime(long seconds) { 
   long HH{seconds/3600};
   long H_re{seconds%3600};
@@ -16,6 +14,8 @@ string Format::ElapsedTime(long seconds) {
   string time{HH_str+':'+MM_str+':'+SS_str};
   return time;
 }
+//DONE
+// INPUT: LONG seconds  -   OUTPUT: STRING HH:MM:SS
 
 
 /*

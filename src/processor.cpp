@@ -8,22 +8,23 @@ using std::string;
 using std::vector;
 
 // Return the aggregate CPU utilization
-
-/*float Processor::Utilization() {
-    
+float Processor::Utilization() {
   long wakeJiffies = LinuxParser::ActiveJiffies();
-    long sleepJiffies = LinuxParser::IdleJiffies();
-    long activeJiffiesTime = wakeJiffies - cachedWakeJiffies;
-    long sleepJiffiesTime = sleepJiffies - cachedSleepJiffies;
-    long totalJiffiesTime = activeJiffiesTime + sleepJiffiesTime;
-    cachedWakeJiffies = wakeJiffies;
-    cachedSleepJiffies = cachedSleepJiffies;
-    return  static_cast<float>(activeJiffiesTime / totalJiffiesTime);
+  long sleepJiffies = LinuxParser::IdleJiffies();
+  long activeJiffiesTime = wakeJiffies - cachedWakeJiffies;
+  long sleepJiffiesTime = sleepJiffies - cachedSleepJiffies;
+  long totalJiffiesTime = activeJiffiesTime + sleepJiffiesTime;
+  cachedWakeJiffies = wakeJiffies;
+  cachedSleepJiffies = cachedSleepJiffies;
+  return  static_cast<float>(activeJiffiesTime / totalJiffiesTime);
 }
-*/
+//DONE
+// Return FLOAT for % percentage of CPU utilization
   
-
+  
+/*
 //δευτερη περιπτωση
 float Processor::Utilization() {
   return (float)LinuxParser::ActiveJiffies() / LinuxParser::Jiffies();
 }
+*/

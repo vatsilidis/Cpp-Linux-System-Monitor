@@ -15,25 +15,41 @@ using std::string;
 using std::vector;
 
 Processor& System::Cpu() { return cpu_; }
-vector<Process>& System::Processes() { 
-    vector<int> pidSet = LinuxParser::Pids();
+//DONE return a Reference to a Processor object
 
+
+vector<Process>& System::Processes() { 
+    processes_ = {};
+    vector<int> pidSet = LinuxParser::Pids();
     for(int pid: pidSet){
        Process p(pid);
        processes_.push_back(p);
-   }
-std::sort(processes_.begin(), processes_.end());
+    }
+    std::sort(processes_.begin(), processes_.end());
     return processes_; 
 }
+//DONE
+// Return Vector<Process> with the ID's from { vector<int> LinuxParser::Pids()  }
+
 
 std::string System::Kernel() { return LinuxParser::Kernel(); }
+//DONE  STRING with name of Kernel
+
 float System::MemoryUtilization() { return LinuxParser::MemoryUtilization(); }
+//DONE  FLOAT (Percentage % of memory utilization)
+
 std::string System::OperatingSystem() { return LinuxParser::OperatingSystem(); }
+//DONE  STRING with name of Operating System
+
 int System::RunningProcesses() { return LinuxParser::RunningProcesses(); }
+//DONE  INT NUMBER of the running processes
+
 int System::TotalProcesses() { return LinuxParser::TotalProcesses(); }
+//DONE  INT of the total processes
 
 //store the UpTime to the local uptime variable for not parssing in every call
 long int System::UpTime() { 
-   uptime = LinuxParser::UpTime();
-   return uptime;
+   uptime_ = LinuxParser::UpTime();
+   return uptime_;
 }
+//DONE  LONG time in OF SYSTEM UPTIME in SECONDS
