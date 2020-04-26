@@ -153,7 +153,6 @@ long LinuxParser::ActiveJiffies() {
      >> idle >> iowait >> irq >> softirq >> steal){
        if(value == "cpu"){
          ActiveJ = user + nice + system + irq + softirq + steal;
-         break;
        }
     }
   }
@@ -174,7 +173,6 @@ long LinuxParser::IdleJiffies() {
      >> idle >> iowait >> irq >> softirq >> steal){
        if(value == "cpu"){
          iddleJ = idle + iowait;
-         break;
        }
     }
   }
@@ -306,7 +304,7 @@ string LinuxParser::User(int pid) {
 // Read and return the uptime of a process
 long LinuxParser::UpTime(int pid) { 
   string line, value;
-  long uptime = 0, starttime;
+  long uptime=0, starttime;
   std::ifstream filestream(kProcDirectory + to_string(pid) + kStatFilename);
   if (filestream.is_open()) {
     std::getline(filestream, line);

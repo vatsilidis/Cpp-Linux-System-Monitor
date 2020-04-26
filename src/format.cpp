@@ -1,9 +1,6 @@
 #include <string>
 #include "format.h"
 
-#define HOUR 3600
-#define MINUTE 60
-
 using std::string;
 
 // INPUT: Long int measuring seconds
@@ -22,6 +19,9 @@ string Format::ElapsedTime(long seconds) {
 
 
 /*
+#define HOUR 3600
+#define MINUTE 60
+
 string Format::ElapsedTime(long seconds) { 
     int hours_ = seconds / HOUR;
     int seconds_ =  seconds % HOUR;

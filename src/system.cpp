@@ -7,6 +7,7 @@
 #include "process.h"
 #include "processor.h"
 #include "system.h"
+#include "linux_parser.h"
 
 using std::set;
 using std::size_t;
@@ -17,31 +18,11 @@ Processor& System::Cpu() { return cpu_; }
 vector<Process>& System::Processes() { 
     vector<int> pidSet = LinuxParser::Pids();
 
-    /*
-    //create extension set for Pids
-    set<int> extensionPids;
-    for (Process const& prcss : processes_){
-        extensionPids.insert(prcss.Pid());
-    }
-    
-    //emplace the new processes
-    for (int pid : pidSet){
-        if(extensionPids.find(pid) == extensionPids.end()){
-            processes_.emplace_back(pid);
-        }
-    }
-    */
-   for(int pid: pidSet){
-       
+    for(int pid: pidSet){
+       Process p(pid);
+       processes_.push_back(p);
    }
-   
-
-    //update cpu utilization with new processes
-    for (Process& prcss : processes_){
-        prcss.CpuUtilization(LinuxParser::ActiveJiffies(prcss.Pid() / LinuxParser::ActiveJiffies() ));
-    }
-    
-    std::sort(processes_.begin(), processes_.end(), std::greater_equal());
+std::sort(processes_.begin(), processes_.end());
     return processes_; 
 }
 
@@ -53,8 +34,6 @@ int System::TotalProcesses() { return LinuxParser::TotalProcesses(); }
 
 //store the UpTime to the local uptime variable for not parssing in every call
 long int System::UpTime() { 
-    if (uptime==0.0){
-        uptime = LinuxParser::UpTime();
-        return uptime;
-    }else {return uptime;}
+   uptime = LinuxParser::UpTime();
+   return uptime;
 }
