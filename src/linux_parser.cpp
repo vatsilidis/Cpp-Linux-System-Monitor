@@ -31,7 +31,6 @@ string LinuxParser::OperatingSystem() {
   }
   return value;
 }
-//DONE  STRING with name of Operating System
 
 // read data from the filesystem
 string LinuxParser::Kernel() {
@@ -45,9 +44,7 @@ string LinuxParser::Kernel() {
   }
   return kernel;
 }
-//DONE  STRING with name of Kernel
 
-// BONUS: Update this to use std::filesystem
 vector<int> LinuxParser::Pids() {
   vector<int> pids;
   DIR* directory = opendir(kProcDirectory.c_str());
@@ -65,7 +62,6 @@ vector<int> LinuxParser::Pids() {
   closedir(directory);
   return pids;
 }
-//DONE  vector<int> with the process ID's of Folder name in /proc/
 
 // Read and return the system memory utilization
 float LinuxParser::MemoryUtilization() { 
@@ -89,8 +85,6 @@ float LinuxParser::MemoryUtilization() {
   return (memTotal - memFree) / memTotal;
 }
 
-//DONE  FLOAT (Percentage % of memory utilization)
-
 // Read and return the system uptime
 long LinuxParser::UpTime() { 
  long uptime;
@@ -103,13 +97,11 @@ long LinuxParser::UpTime() {
   }
   return uptime;
 }
-//DONE  LONG (time in SECONDS)
 
 // Read and return the number of jiffies for the system
 long LinuxParser::Jiffies() {
   return LinuxParser::ActiveJiffies() + LinuxParser::IdleJiffies();
 }
-//DONE  LONG: Adding ACTIVE + IDDLE  Jiffies
 
 // Read and return the number of active jiffies for a PID
 long LinuxParser::ActiveJiffies(int pid) { 
@@ -126,7 +118,6 @@ long LinuxParser::ActiveJiffies(int pid) {
   }
   return (utime + stime + cutime + cstime) / sysconf(_SC_CLK_TCK);
 }
-//DONE  LONG the total elapsed time in seconds since the process started 
 
 // Read and return the number of active jiffies for the system
 long LinuxParser::ActiveJiffies() { 
@@ -146,7 +137,6 @@ long LinuxParser::ActiveJiffies() {
   }
   return active / sysconf(_SC_CLK_TCK);
 }
-//DONE
 
 // Read and return the number of idle jiffies for the system
 long LinuxParser::IdleJiffies() {  
@@ -166,7 +156,6 @@ long LinuxParser::IdleJiffies() {
   }
   return idleTime / sysconf(_SC_CLK_TCK);
 }
-//DONE
 
 // Read and return CPU utilization
 vector<string> LinuxParser::CpuUtilization() { 
@@ -187,7 +176,6 @@ vector<string> LinuxParser::CpuUtilization() {
   }
   return values;
 }
-//DONE
 
 // Read and return the total number of processes
 int LinuxParser::TotalProcesses() { 
@@ -206,7 +194,6 @@ int LinuxParser::TotalProcesses() {
   }
   return total_proc;
 }
-//DONE  INT of the total processes
 
 // Read and return the number of running processes
 int LinuxParser::RunningProcesses() { 
@@ -225,7 +212,6 @@ int LinuxParser::RunningProcesses() {
   }
   return runnig_proc;
 }
-//DONE  INT NUMBER of the running processes
 
 // Read and return the user ID associated with a process
 string LinuxParser::Uid(int pid) { 
@@ -243,7 +229,6 @@ string LinuxParser::Uid(int pid) {
   }
   return uid;
 }
-//DONE  STRING with Username of user began the Process
 
 // Read and return the command associated with a process
 string LinuxParser::Command(int pid) {
@@ -254,7 +239,6 @@ string LinuxParser::Command(int pid) {
   }
   return line;
 }
-// DONE   STRING with the command assosiated with process
 
 // Read and return the user associated with a process
 string LinuxParser::User(int pid) { 
@@ -273,7 +257,6 @@ string LinuxParser::User(int pid) {
   }
   return username;
 }
-// DONE   STRING username of Input PID
 
 // Read and return the memory used by a process
 string LinuxParser::Ram(int pid) { 
@@ -293,7 +276,6 @@ string LinuxParser::Ram(int pid) {
   }
   return to_string(ram);
 }
-// DONE   STRING Memory Utilization / Process ID in MBytes
 
 // Read and return the uptime of a process
 long LinuxParser::UpTime(int pid) { 
@@ -310,4 +292,3 @@ long LinuxParser::UpTime(int pid) {
   }
   return uptime / sysconf(_SC_CLK_TCK);
 }
-// DONE  LONG in Seconds of Process UPTIME

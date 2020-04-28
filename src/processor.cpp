@@ -11,4 +11,3 @@ using std::vector;
 float Processor::Utilization() {
   return (float)LinuxParser::ActiveJiffies() / LinuxParser::Jiffies();
 }
-//DONE

@@ -22,4 +22,3 @@ string Format::ElapsedTime(long seconds) {
   ss = (second < 10) ? ("0" + to_string(second)) : to_string(second);
   return hh + ":" + mm + ":" + ss;
 }
-//DONE
