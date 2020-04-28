@@ -11,10 +11,9 @@ const std::string kProcDirectory{"/proc/"};
 const std::string kCmdlineFilename{"/cmdline"};
 const std::string kCpuinfoFilename{"/cpuinfo"};
 const std::string kStatusFilename{"/status"};
-const std::string kStatFilename{"/proc/stat"};
-const std::string kSingleStatFilename{"/stat"};
-const std::string kUptimeFilename{"/proc/uptime"};
-const std::string kMeminfoFilename{"/proc/meminfo"};
+const std::string kStatFilename{"/stat"};
+const std::string kUptimeFilename{"/uptime"};
+const std::string kMeminfoFilename{"/meminfo"};
 const std::string kVersionFilename{"/version"};
 const std::string kOSPath{"/etc/os-release"};
 const std::string kPasswordPath{"/etc/passwd"};
@@ -46,7 +45,7 @@ long Jiffies();
 long ActiveJiffies();
 long ActiveJiffies(int pid);
 long IdleJiffies();
-std::vector<long> jiffiesCPU;
+//std::vector<long> jiffiesCPU;
     
 
 // Processes

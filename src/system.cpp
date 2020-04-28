@@ -18,18 +18,18 @@ Processor& System::Cpu() { return cpu_; }
 //DONE return a Reference to a Processor object
 
 
+// Return Vector<Process> with the ID's from { vector<int> LinuxParser::Pids()  }
 vector<Process>& System::Processes() { 
-    processes_ = {};
+	processes_.clear();
     vector<int> pidSet = LinuxParser::Pids();
     for(int pid: pidSet){
        Process p(pid);
-       processes_.push_back(p);
+       processes_.emplace_back(p);
     }
     std::sort(processes_.begin(), processes_.end());
     return processes_; 
 }
 //DONE
-// Return Vector<Process> with the ID's from { vector<int> LinuxParser::Pids()  }
 
 
 std::string System::Kernel() { return LinuxParser::Kernel(); }
@@ -49,7 +49,6 @@ int System::TotalProcesses() { return LinuxParser::TotalProcesses(); }
 
 //store the UpTime to the local uptime variable for not parssing in every call
 long int System::UpTime() { 
-   uptime_ = LinuxParser::UpTime();
-   return uptime_;
+	return LinuxParser::UpTime();
 }
 //DONE  LONG time in OF SYSTEM UPTIME in SECONDS
